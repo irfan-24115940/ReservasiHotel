@@ -1,20 +1,23 @@
--- =============================================
--- 03. GENERATING DATA JUMLAH BESAR (UJI INDEXING)
--- =============================================
 
-INSERT INTO kamar (id_tipe, nomor_kamar, status_kamar)
-SELECT 
-    t.id_tipe,
-    'KM-' || gs,
-    CASE 
-        WHEN random() > 0.6 THEN 'Tersedia' 
-        WHEN random() > 0.3 THEN 'Terisi' 
-        ELSE 'Pemeliharaan' 
-    END
-FROM generate_series(1, 5000) AS gs
-CROSS JOIN LATERAL (
-    SELECT id_tipe FROM tipe_kamar ORDER BY random() LIMIT 1
-) AS t;
+DELIMITER $$
+CREATE PROCEDURE generate_kamar()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    WHILE i <= 5000 DO
+        INSERT INTO kamar (id_tipe, nomor_kamar, status_kamar)
+        VALUES (
+            FLOOR(1 + RAND() * 10),
+            CONCAT('KM-', i),
+            CASE
+                WHEN RAND() > 0.6 THEN 'Tersedia'
+                WHEN RAND() > 0.3 THEN 'Terisi'
+                ELSE 'Pemeliharaan'
+            END
+        );
+        SET i = i + 1;
+    END WHILE;
+END$$
+DELIMITER ;
 
--- Verifikasi Total Baris
-SELECT COUNT(*) FROM kamar;
+-- Eksekusi generator data kamar
+CALL generate_kamar();
