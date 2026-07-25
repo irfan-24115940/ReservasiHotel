@@ -1,6 +1,4 @@
--- =============================================
--- 02. INITIAL SEEDING DATA
--- =============================================
+
 
 -- Seeding Tabel Tamu
 INSERT INTO tamu (nama_lengkap, email, status_member) VALUES
@@ -15,7 +13,7 @@ INSERT INTO tamu (nama_lengkap, email, status_member) VALUES
 ('Irfan Zaky', 'irfan@gmail.com', 'Reguler'),
 ('Joko Widodo', 'joko@gmail.com', 'Reguler');
 
--- Seeding Tabel Profil Tamu (Relasi 1:1)
+-- Seeding Tabel Profil Tamu
 INSERT INTO profil_tamu (id_tamu, no_nik, no_telepon, alamat) VALUES
 (1, '3404011234560001', '081234567890', 'Yogyakarta'),
 (2, '3404011234560002', '081234567891', 'Sleman'),
@@ -44,21 +42,21 @@ INSERT INTO tipe_kamar (nama_tipe, harga_per_malam) VALUES
 -- Seeding Tabel Kamar
 INSERT INTO kamar (id_tipe, nomor_kamar, status_kamar) VALUES
 (1, 'K101', 'Tersedia'),
-(1, 'K102', 'Terisi'), 
+(1, 'K102', 'Terisi'),
 (1, 'K103', 'Tersedia'),
-(2, 'K201', 'Terisi'), 
-(2, 'K202', 'Pemeliharaan'), 
+(2, 'K201', 'Terisi'),
+(2, 'K202', 'Pemeliharaan'),
 (2, 'K203', 'Tersedia'),
-(3, 'K301', 'Terisi'), 
+(3, 'K301', 'Terisi'),
 (3, 'K302', 'Tersedia'),
-(4, 'K401', 'Tersedia'), 
+(4, 'K401', 'Tersedia'),
 (4, 'K402', 'Pemeliharaan');
 
 -- Seeding Tabel Reservasi
 INSERT INTO reservasi (id_tamu, id_kamar, tgl_checkin, tgl_checkout, total_biaya, status_reservasi) VALUES
 (1, 4, '2026-06-01', '2026-06-03', 1000000, 'Completed'),
 (2, 2, '2026-06-05', '2026-06-06', 350000, 'Completed'),
-(3, 7, '2026-06-10', '2026-06-12', 1700000, 'Checked_In'),
+(3, 7, '2026-06-10', '2026-06-12', 1700000, 'Checked In'),
 (4, 1, '2026-06-15', '2026-06-17', 700000, 'Confirmed'),
 (5, 3, '2026-06-20', '2026-06-21', 350000, 'Pending'),
 (6, 9, '2026-07-01', '2026-07-02', 2500000, 'Confirmed'),
@@ -82,10 +80,13 @@ INSERT INTO layanan (nama_layanan, harga) VALUES
 
 -- Seeding Tabel Detail Layanan Reservasi
 INSERT INTO detail_layanan_reservasi (id_reservasi, id_layanan, jumlah, subtotal) VALUES
-(1, 2, 2, 150000), (1, 3, 1, 150000),
+(1, 2, 2, 150000),
+(1, 3, 1, 150000),
 (2, 1, 1, 50000),
-(3, 4, 2, 500000), (3, 5, 1, 100000),
+(3, 4, 2, 500000),
+(3, 5, 1, 100000),
 (4, 2, 2, 150000),
-(6, 3, 1, 150000), (6, 4, 1, 250000),
+(6, 3, 1, 150000),
+(6, 4, 1, 250000),
 (7, 1, 2, 100000),
 (8, 2, 1, 75000);
